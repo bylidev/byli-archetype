@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <logger name="com.zaxxer.hikari.pool.PoolBase" level="ERROR"/>
+  <logger name="com.zaxxer.hikari.pool.HikariPool" level="ERROR"/>
+  <logger name="com.zaxxer.hikari.HikariDataSource" level="ERROR"/>
+  <!-- Define the root logger level and appender -->
+  <root level="error">
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+  <!-- Console appender definition -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        %d{HH:mm:ss.SSS} %highlight(%-5level) [%5.5thread] %cyan(%class{0}.%method:%line) - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+  <!-- Example of a logger for a specific package -->
+  <logger name="dev.byli" level="debug" additivity="false">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+  <logger name="org.hibernate" level="info" additivity="false">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+</configuration>
