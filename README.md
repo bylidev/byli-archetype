@@ -1,6 +1,8 @@
 # 🍃 Springboot clean architecture archetype
 
-This project follows Uncle Bob's Clean Architecture principles, using generics and interfaces to enforce consistent implementation of use cases, domains, repositories, and entry points. This design ensures a clear separation of concerns and makes the architecture flexible and easy to extend.
+This project follows Uncle Bob's Clean Architecture principles, using generics and interfaces to enforce consistent
+implementation of use cases, domains, repositories, and entry points. This design ensures a clear separation of concerns
+and makes the architecture flexible and easy to extend.
 
 # Folder Structure
 
@@ -29,6 +31,7 @@ main
 ```
 
 ## Technologies Used
+
 - **Java 21**
 - **Postgres**
 - **JOOQ**
@@ -37,7 +40,8 @@ main
 
 ## How to Use
 
-This project follows the **Database-First** approach. To get started, add your desired database migration. Once you've added the migration, run the following command:
+This project follows the **Database-First** approach. To get started, add your desired database migration. Once you've
+added the migration, run the following command:
 
 `mvn clean package`
 

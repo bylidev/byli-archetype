@@ -13,14 +13,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.release>21</maven.compiler.release>
-        <lombok.version>1.18.30</lombok.version>
-        <dagger.version>2.52</dagger.version>
-        <database.url>jdbc:postgresql://192.168.0.22:5432/</database.url>
-        <database.user>postgres</database.user>
-        <database.password>postgres</database.password>
-        <database.schema>db_name</database.schema>
         <package.base>dev.byli.robot.archetype</package.base>
-        <org.mapstruct.version>1.6.0</org.mapstruct.version>
         <spring.version>3.3.3</spring.version>
     </properties>
 
@@ -43,23 +36,19 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${org.mapstruct.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.7.2</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
         </dependency>
 
         <dependency>
@@ -67,12 +56,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
-            <version>3.19.11</version>
         </dependency>
 
     </dependencies>
@@ -92,80 +75,7 @@
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
                         </path>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>${org.mapstruct.version}</version>
-                        </path>
                     </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-            <!-- MIGRATIONS -->
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>10.7.1</version>
-                <executions>
-                    <execution>
-                        <id>flyway-migrate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>migrate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <locations>
-                        <location>filesystem:src/main/resources/db/migration</location>
-                    </locations>
-                    <url>${database.url}${database.schema}</url>
-                    <user>${database.user}</user>
-                    <password>${database.password}</password>
-                    <defaultSchema>${database.schema}</defaultSchema>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.flywaydb</groupId>
-                        <artifactId>flyway-database-postgresql</artifactId>
-                        <version>10.17.0</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <!-- JOOQ -->
-            <plugin>
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.19.11</version>
-                <executions>
-                    <execution>
-                        <id>jooq-codegen</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jdbc>
-                        <driver>org.postgresql.Driver</driver>
-                        <url>${database.url}${database.schema}</url>
-                        <user>${database.user}</user>
-                        <password>${database.password}</password>
-                    </jdbc>
-                    <generator>
-                        <name>org.jooq.codegen.JavaGenerator</name>
-                        <database>
-                            <name>org.jooq.meta.postgres.PostgresDatabase</name>
-                            <inputSchema>public</inputSchema>
-                            <includes>.*</includes>
-                            <excludes></excludes>
-                        </database>
-                        <target>
-                            <packageName>${package.base}.infrastructure.repository.jooq</packageName>
-                            <directory>src/main/java</directory>
-                        </target>
-                    </generator>
                 </configuration>
             </plugin>
             <!-- Java build -->
