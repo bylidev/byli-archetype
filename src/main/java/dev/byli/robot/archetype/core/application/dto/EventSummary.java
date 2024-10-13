@@ -6,7 +6,6 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
