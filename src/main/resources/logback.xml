@@ -16,7 +16,7 @@
         </encoder>
     </appender>
 
-    <logger name="dev.byli" level="ERROR" additivity="false">
+    <logger name="com.feverup" level="ERROR" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
     <logger name="org.hibernate" level="info" additivity="false">

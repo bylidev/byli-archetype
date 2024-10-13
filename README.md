@@ -1,6 +1,6 @@
-# 🍃 Springboot clean architecture archetype
+# 🍃 Fever challenge
 
-This project follows Uncle Bob's Clean Architecture principles, using generics and interfaces to enforce consistent
+This project follows Uncle Bob's Clean Architecture principles aka hexagonal architecture, using generics and interfaces to enforce consistent
 implementation of use cases, domains, repositories, and entry points. This design ensures a clear separation of concerns
 and makes the architecture flexible and easy to extend.
 
@@ -9,23 +9,23 @@ and makes the architecture flexible and easy to extend.
 ```plaintext
 main
 └── java
-    └── dev.byli.robot.archetype
+    └── com.feverup.challenge
         ├── core
         │   ├── domain
-        │   ├── mappers
-        │   └── usecase.dummy
-        │       ├── Dto
-        │       ├── Repository
-        │       └── UseCase
+        │   └── application
+        │       ├── dto
+        │       ├── mappers
+        │       └── usecases
+        │       └── ports
         ├── entrypoints
         │   ├── controllers
-        │   │   └── DomainController
-        │   └── events
-        └── infrastructure.repository
-            └── jooq
-                ├── DummyRepository
-                ├── JooqConfig
-                └── Application
+        │   └── schedules
+        └── infrastructure
+            └── springboot
+                ├── configs
+                ├── controllers
+                └── crons
+                └── ports
 └── resources
 └── test
 ```
@@ -33,17 +33,19 @@ main
 ## Technologies Used
 
 - **Java 21**
-- **Postgres**
-- **JOOQ**
-- **FlyWay**
-- **Spring Actuator**
+- **h2**
+- **springcache**
+- **springboot**
 
-## How to Use
+## Build the project
 
-This project follows the **Database-First** approach. To get started, add your desired database migration. Once you've
-added the migration, run the following command:
+To build the project, use the following command:
 
-`mvn clean package`
+```bash
+mvn clean install
+```
 
-Jooq will generate your Records and Classes on infrastructure.repository.jooq
+## Future Improvements
 
+- **CQRS Implementation**: By implementing CQRS, we will separate command (write) and query (read) operations, enhancing performance and scalability.
+- **Auto-scaling**: Polling services will automatically scale based on event volume.
