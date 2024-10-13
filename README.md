@@ -45,7 +45,10 @@ To build the project, use the following command:
 mvn clean install
 ```
 
+## Improvements
+- **Cache Implementation**: Implementing a caching mechanism reduce latency and improve response times.
+
 ## Future Improvements
 
-- **CQRS Implementation**: By implementing CQRS, we will separate command (write) and query (read) operations, enhancing performance and scalability.
+- **CQRS Implementation**: By implementing CQRS, we will separate command (provider pulling operation) and query (read) operations, enhancing performance and scalability.
 - **Auto-scaling**: Polling services will automatically scale based on event volume.
